@@ -12,8 +12,9 @@ int main(){
     std::fstream app_arquivo;
     std::string nome;
     std::ifstream leitura;
+    std::string filename = "/Users/ericcalasans/Documents/Projetos/C++/cursocpp/arquivos/arquivo.txt";
 
-    app_arquivo.open("arquivo.txt", std::ios::app);
+    app_arquivo.open(filename.c_str(), std::ios::app);
 
     if(!app_arquivo.fail()){
         printf("Vou adicionar o nome de sua vó no final do arquivo!\n");
@@ -23,13 +24,11 @@ int main(){
         exit(1);
     }
     app_arquivo.close();
-    app_arquivo.open("arquivo.txt", std::ios::in);
+    app_arquivo.open(filename.c_str(), std::ios::in); // Abre em modo leitura
 
     if(!app_arquivo.fail()){
-        getline(app_arquivo, nome);
-        while(app_arquivo.good()){
+        while( getline(app_arquivo, nome)){
             std::cout << nome << std::endl;
-            getline(app_arquivo, nome);
         }
     } else {
         printf("Não consegui abrir o arquivo no modo in...\n");
