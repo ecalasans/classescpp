@@ -5,6 +5,8 @@
 #include <iostream>
 #include <cmath>
 
+#define PI 3.14159265
+
 Complexo::Complexo(double real, double imag):
     realPart(real), imaginarioPart(imag) {}
 
@@ -16,7 +18,10 @@ void Complexo::atribuiValor(double real, double imag) {
 void Complexo::mostraValores() {
     char sinal = '+';
 
-    if (imaginarioPart < 0) sinal = '-';
+    if (imaginarioPart < 0){
+        sinal = '-';
+        imaginarioPart *= -1;
+    }
     std::cout << "Complexo:  " << realPart << ' ' << sinal
         << ' ' << imaginarioPart << "i\n";
 }
@@ -52,4 +57,27 @@ Complexo Complexo::operator~() {
     x.realPart = realPart;
     x.imaginarioPart = (-1)*imaginarioPart;
     return x;
+}
+
+Complexo Complexo::operator*(const Complexo &compl2) {
+    Complexo produto;
+    produto.realPart = imaginarioPart*(realPart - compl2.imaginarioPart);
+    produto.imaginarioPart = (realPart*compl2.imaginarioPart) + (imaginarioPart*compl2.realPart);
+
+    return produto;
+}
+
+double addReal(const Complexo& a, const Complexo& b){
+    return (a.realPart + b.realPart);
+}
+double addImag(const Complexo& a, const Complexo& b){
+    return (a.imaginarioPart + b.imaginarioPart);
+}
+void toPolar(const Complexo& a){
+    double mag = sqrt(pow(a.realPart, 2) + pow(a.imaginarioPart, 2));
+    double angulo = atan(a.imaginarioPart/a.realPart) * 180 / PI;
+
+    printf("Forma polar:  %.2f /_ %.2f", mag, angulo);
+
+    return;
 }

@@ -11,5 +11,15 @@ int main() {
     std::cout << a.magnitude() << std::endl;
     a = ~a;
     std::cout << a.getImaginario() << std::endl;
+
+    Complexo b(2.0, 1.0);
+    Complexo c = a + b;
+    c.mostraValores();
+
+    Complexo p = a * b;
+    p.mostraValores();
+
+    toPolar(a);
     return 0;
+
 }

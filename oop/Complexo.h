@@ -7,6 +7,11 @@
 
 
 class Complexo {
+    // Funções amigas
+    friend double addReal(const Complexo& a, const Complexo& b);
+    friend double addImag(const Complexo& a, const Complexo& b);
+    friend void toPolar(const Complexo& a);
+
 private:
     double realPart;
     double imaginarioPart;
@@ -22,13 +27,14 @@ public:
     double getImaginario();
     void setReal(double rl);
     void setImaginario(double im);
-
     double magnitude();
+
 
     //Operadores
     bool operator==(const Complexo& compl2);
     Complexo operator+(const Complexo& compl2);
     Complexo operator~();
+    Complexo operator*(const Complexo& compl2);
 };
 
 
